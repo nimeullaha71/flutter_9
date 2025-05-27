@@ -39,7 +39,7 @@ class _TaskMangerAppState extends State<TaskMangerApp> {
           ),
         ),
         textTheme: const TextTheme(
-          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)
+          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
         )
       ),
       home: const SplashScreen(),
