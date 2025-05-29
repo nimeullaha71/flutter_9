@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttter_9/ui/screens/forgot_password_verify_email_screen.dart';
+import 'package:fluttter_9/ui/screens/main_bottom_nav_screen.dart';
 import 'package:fluttter_9/ui/screens/register_screen.dart';
 import 'package:fluttter_9/ui/widgets/screen_background.dart';
 
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24,
               ),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _onTapSignInButton,
                   child: const Icon(
                     Icons.arrow_circle_right_outlined,
                     color: Colors.white,
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = _onTapSignInButton,
+                              ..onTap = _onTapSignUpButton,
                           ),
                         ])),
                   ],
@@ -101,6 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 
+  void _onTapSignInButton() {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MainBottomNavScreen()),
+        (predicate) => false);
+  }
+
   void _onTapForgotPassword() {
     Navigator.push(
         context,
@@ -108,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
             builder: (context) => const ForgotPasswordVerifyEmailScreen()));
   }
 
-  void _onTapSignInButton() {
+  void _onTapSignUpButton() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => const RegisterScreen()));
   }
