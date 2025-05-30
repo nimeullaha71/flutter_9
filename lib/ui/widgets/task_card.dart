@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 
+enum TaskStatus{
+  sNew,
+  progress,
+  completed,
+  cancelled,
+}
+
 class TaskCard extends StatelessWidget {
   const TaskCard({
-    super.key,
+    super.key, required this.taskStatus,
   });
+
+  final TaskStatus taskStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +41,7 @@ class TaskCard extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  backgroundColor: Colors.blue,
+                  backgroundColor: _geStatusCHipColor(),
                   side: BorderSide.none,
                 ),
                 const Spacer(),
@@ -45,4 +54,19 @@ class TaskCard extends StatelessWidget {
       ),
     );
   }
+
+  Color _geStatusCHipColor(){
+    if(taskStatus == TaskStatus.sNew){
+      return Colors.blue;
+    }
+    else if(taskStatus == TaskStatus.progress){
+      return Colors.purple;
+    }
+    else if(taskStatus == TaskStatus.cancelled){
+      return Colors.red;
+    }else{
+      return Colors.green;
+    }
+  }
+
 }
