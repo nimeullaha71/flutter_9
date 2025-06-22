@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttter_9/ui/controllers/auth_controller.dart';
 import 'package:fluttter_9/ui/screens/login_screen.dart';
+import 'package:fluttter_9/ui/screens/main_bottom_nav_screen.dart';
 import 'package:fluttter_9/ui/utils/asset_path.dart';
 import 'package:fluttter_9/ui/widgets/screen_background.dart';
 
@@ -18,10 +20,17 @@ class _SplashScreenState extends State<SplashScreen> {
     _moveToNextScreen();
   }
 
-  Future<void> _moveToNextScreen() async{
+  Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
+
+    final bool isLoggedIn = await AuthController.checkIfUserLoggedIn();
+
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => isLoggedIn
+                ? const MainBottomNavScreen()
+                : const LoginScreen()));
   }
 
   @override

@@ -1,7 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttter_9/data/models/login_model.dart';
 import 'package:fluttter_9/data/service/network_client.dart';
+import 'package:fluttter_9/ui/controllers/auth_controller.dart';
 import 'package:fluttter_9/ui/screens/forgot_password_verify_email_screen.dart';
 import 'package:fluttter_9/ui/screens/main_bottom_nav_screen.dart';
 import 'package:fluttter_9/ui/screens/register_screen.dart';
@@ -151,6 +153,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
     });
     if(response.isSuccess){
+      LoginModel loginModel = LoginModel.fromJson(response.data!);
+
+      //ToDo: Save token to local
+      AuthController.saveUserInformation(loginModel.token, loginModel.userModel);
+      //ToDo: Local database set up
+      //ToDo: Logged in/or not
+
+
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const MainBottomNavScreen()),
